@@ -260,7 +260,7 @@ def resultDisplay():
                            + "\n    - 当前模式：" + pointInfo["model"] \
                            + "\n    - 固件版本：" + pointInfo["rom"]
         if pointInfo.get("pluginInfo"):
-            point_infos += "\n    - 插件状态：" + pointInfo["status"] \
+            point_infos += "\n    - 插件状态：" + pointInfo["status"]
         point_infos += "\n    - 在线时间：" + pointInfo.get("onlineTime", "---") \
                        + "\n    - 最近到期积分：" + str(recentExpireAmount) \
                        + "\n    - 最近到期时间：" + recentExpireTime \
