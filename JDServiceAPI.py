@@ -123,15 +123,15 @@ def getControlDevice(mac,i):
                     # print(pcdn_list)
                     status = ""
                     # name = ""
-                    cache_size = ""
+#                     cache_size = ""
                     for pcdn_st in pcdn_list:
                         status += f'''{pcdn_st["nickname"]}({pcdn_st["status"]})   '''
                         # name += f'''{pcdn_st["nickname"]}({pcdn_st["name"]})   '''
-                        cache_size += f'''{pcdn_st["nickname"]}({str(round(int(pcdn_st["cache_size"])/1048/1000,2))}GB)   '''
+#                         cache_size += f'''{pcdn_st["nickname"]}({str(round(int(pcdn_st["cache_size"])/1048/1000,2))}GB)   '''
                     extstorage_exist = data["extstorage_exist"]
                     extstorage_enable = data["extstorage_enable"]
                     #board = data["board"] //delete useless code
-                    control_device.update({"pluginInfo":True,"status":status,"cache_size":cache_size})
+#                     control_device.update({"pluginInfo":True,"status":status,"cache_size":cache_size})
         elif current_value.get("msg"):
             print(current_value.get("msg"))
     else:
