@@ -1,0 +1,24 @@
+name: Daily Cleanup
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Delete old logs
+        run: |
+          # 获取当前日期
+          current_date=$(date +%Y-%m-%d)
+
+          # 计算7天前的日期
+          delete_date=$(date -d "$current_date -7 天之前" +%Y-%m-%d)
+
+          # 删除7天前的日志文件
+          find .github/workflows -type f -name "*.log" -mtime +7 -exec rm {} \;
