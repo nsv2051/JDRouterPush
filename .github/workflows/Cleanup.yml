@@ -1,4 +1,4 @@
-name: Daily Cleanup
+name: 删除7天前的日志
 
 on:
   workflow_dispatch:
@@ -6,20 +6,20 @@ on:
     - cron: "0 0 * * *"
 
 jobs:
-  cleanup:
+  delete-logs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout 代码库
         uses: actions/checkout@v2
 
-      - name: Delete old logs
+      - name: 安装依赖
+        run: npm install -g github-actions-delete-logs
+
+      - name: 删除7天前的日志
         run: |
-          # 获取当前日期
-          current_date=$(date +%Y-%m-%d)
+          # 获取7天前的日期
+          DATE=$(date -d "7 days ago" +%Y-%m-%d)
 
-          # 计算7天前的日期
-          delete_date=$(date -d "$current_date -7 days" +%Y-%m-%d)
-
-          # 删除7天前的日志文件
-          find .github/workflows -type f -name "*.log" -mtime +7 -exec rm {} \;
+          # 删除日志
+          github-actions-delete-logs --before $DATE
